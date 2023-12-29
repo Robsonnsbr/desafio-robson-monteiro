@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* initial styles challenge*/
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    /*TODO: ativar media text-color */
+    --foreground-rgb: 255, 255, 255; 
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+html, body {
+  min-height: 100vh;
+  max-height: fit-content;
+}
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+
+    font-size: 16px;
+    font-weight: normal;
+    text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2); 
+    overflow-x: hidden;   /* TODO: caso o navBar pare de funcionar ajustar o overflow em um container */
+}
+
+img {
+  max-width: 100%;
+}
+
+/* plus styles challenge */
+
+:root {
+  --primary-background: #FFF;
+  --primary-color: hsl(0, 0%, 100%);
+}
+
+::-webkit-scrollbar {
+width: 1rem;
+}
+::-webkit-scrollbar-track {
+  background-color: #d2d0e3;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #768fb0;
+  border-radius: .2rem;
+}
+
+.Wrapper-container {
+  /* background-color: #2f2828; */
+  min-width: 100%;
+  min-height: 100vh;
+  text-align: center;
+}
