@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <Motion>
-      <main className="max-w-[80%] m-auto">
+      <main className="max-w-[90%] sm:max-w-[75%] m-auto">
         <Table />
       </main>
     </Motion>

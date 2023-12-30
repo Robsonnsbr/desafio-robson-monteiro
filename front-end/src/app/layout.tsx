@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
-import { Raleway, Inter } from 'next/font/google';
+import { Raleway, Inter, Montserrat } from 'next/font/google';
 // import { MobileProvider } from "src/context/exempleProvider";
 
+const montserrat = Montserrat({ subsets: ['latin'] });
 const raleway = Raleway({ subsets: ['latin'] });
 const inter = Inter({ subsets: ['latin'] });
 import '@/styles/globals.css';
@@ -12,6 +13,9 @@ interface children {
 }
 
 const isValidFont = () => {
+  if (montserrat) {
+    return montserrat;
+  }
   if (raleway) {
     return raleway;
   }

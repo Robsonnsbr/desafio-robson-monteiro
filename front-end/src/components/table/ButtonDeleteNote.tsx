@@ -3,7 +3,7 @@ import trashIcon from '@/assets/icons/trash.svg';
 import Image from 'next/image';
 
 const deleteNote = () => {
-  console.log('Deletei a nota!');
+  console.log('Delete nota');
 };
 
 function ButtonModal() {
