@@ -1,4 +1,6 @@
 'use client';
+import trashIcon from '@/assets/icons/trash.svg';
+import Image from 'next/image';
 
 const deleteNote = () => {
   console.log('Deletei a nota!');
@@ -7,7 +9,7 @@ const deleteNote = () => {
 function ButtonModal() {
   return (
     <button onClick={() => deleteNote()}>
-      <span className="text-white">B.DEL</span>
+      <Image src={trashIcon} alt={'icon lixeira'} />
     </button>
   );
 }
