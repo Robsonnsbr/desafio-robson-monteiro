@@ -20,10 +20,10 @@ export class Resultado extends Document {
   @Prop({ required: true, enum: Bimestre })
   bimestre: Bimestre;
 
-  @Prop({ required: true, enum: Disciplina })
+  @Prop({ required: false, enum: Disciplina })
   disciplina: Disciplina;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   nota: number;
 }
 

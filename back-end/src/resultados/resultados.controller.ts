@@ -1,18 +1,47 @@
-import { Controller, Post, Get, Delete, Body, Param, Query } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Get,
+  Delete,
+  Body,
+  Param,
+  Query,
+  Put
+} from '@nestjs/common';
 import { ResultadosService } from './resultados.service';
+import { Disciplina } from './resultado.entity';
 
 @Controller('resultados')
 export class ResultadosController {
   constructor(private readonly resultadosService: ResultadosService) {}
 
-  @Post()
-  async criarResultado(
-    @Body('bimestre') bimestre: string,
-    @Body('disciplina') disciplina: string,
-    @Body('nota') nota: number
-  ) {
-    return this.resultadosService.criarResultado(bimestre, disciplina, nota);
+  @Post('/criar-bimestres')
+  async criarBimestres() {
+    return this.resultadosService.criarBimestres();
   }
+
+  @Put(':id')
+  async atualizarResultado(
+    @Param('id') id: string,
+    @Body()
+    body: {
+      disciplina: Disciplina;
+      nota: number;
+    }
+  ) {
+    console.log(body);
+    console.log(id);
+    const { disciplina, nota } = body;
+    return this.resultadosService.atualizarResultado(id, disciplina, nota);
+  }
+  // @Post()
+  // async criarResultado(
+  //   @Body('bimestre') bimestre: string,
+  //   @Body('disciplina') disciplina: string,
+  //   @Body('nota') nota: number
+  // ) {
+  //   return this.resultadosService.criarResultado(bimestre, disciplina, nota);
+  // }
 
   @Get()
   async obterResultados() {
