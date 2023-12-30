@@ -1,26 +1,21 @@
 'use client';
-// Importando React, useState e useEffect do React
 import React, { useState, useEffect } from 'react';
 
-// Importando os tipos necessários
 import { Resultado } from 'src/types/Types';
 
-// Importando os dados do arquivo JSON
-import resultado from '@/dados/db.json';
 import ButtonDeleteNote from './ButtonDeleteNote';
 import ButtonModal from '../modal/ButtonModal';
+import { fetchResultados } from '@/app/api/dados/route';
 
 function Table() {
-  const [dados, setDados] = useState<{ resultado: Resultado[] }>({
-    resultado: []
-  });
-
+  const [resultados, setResultados] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setDados(resultado);
+        const data = await fetchResultados();
+        setResultados(data);
       } catch (error) {
-        console.error('Erro ao carregar os dados:', error);
+        console.error('Erro ao buscar resultados:', error);
       }
     };
 
@@ -29,8 +24,8 @@ function Table() {
 
   return (
     <ul className="grid gap-4 items-center h-full pt-28">
-      {dados.resultado.map((dado: Resultado) => (
-        <li key={dado.id}>
+      {resultados.map((dado: Resultado, index) => (
+        <li key={dado.id || index}>
           <div>
             <div className="flex justify-between mb-7">
               <h1>{dado.bimestre}</h1>
@@ -38,7 +33,7 @@ function Table() {
             </div>
             <div className="flex items-start gap-2">
               <div
-                className={`p-4 ${
+                className={`text-left h-36 w-40 ${
                   dado.disciplina === 'Biologia'
                     ? 'bg-green-400'
                     : dado.disciplina === 'Artes'
