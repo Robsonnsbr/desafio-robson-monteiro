@@ -3,15 +3,16 @@
 import Image from 'next/image';
 import vectorIcon from '@/assets/icons/vector.svg';
 
-const sendNota = () => {
-  console.log('Send nota');
-};
+interface ButtonOpenModalProps {
+  modalOpen: boolean;
+  onClick: (estado: boolean) => void;
+}
 
-function ButtonModal() {
+function ButtonOpenModal({ modalOpen, onClick }: ButtonOpenModalProps) {
   return (
     <button
       className="bg-customYellow px-4 py-1 rounded-xl h-fit"
-      onClick={() => sendNota()}
+      onClick={() => onClick(!modalOpen)}
     >
       <div className="flex gap-2">
         <span className="hidden sm:flex items-center text-black font-semibold">
@@ -23,4 +24,4 @@ function ButtonModal() {
   );
 }
 
-export default ButtonModal;
+export default ButtonOpenModal;

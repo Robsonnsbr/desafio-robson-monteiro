@@ -1,6 +1,8 @@
 import { Resultado } from 'src/types/Types';
 
-export const apiEndpoint = 'http://localhost:3000/resultados';
+type ResultadoId = Pick<Resultado, '_id'>;
+
+export const apiEndpoint = 'http://localhost:4000/resultados';
 
 export const getDados = async () => {
   try {
@@ -16,7 +18,9 @@ export const getDados = async () => {
   }
 };
 
-export const updateDados = async (dadosParaAtualizar: Resultado) => {
+export const updateDados = async (
+  dadosParaAtualizar: ResultadoId | Resultado
+) => {
   try {
     const dadosAtuais = await getDados();
 
@@ -27,10 +31,6 @@ export const updateDados = async (dadosParaAtualizar: Resultado) => {
     if (!dadosExistentes) {
       throw new Error('Os dados a serem atualizados não foram encontrados');
     }
-
-    // const dadosAtualizados = {
-    //   _id: dadosParaAtualizar._id
-    // };
 
     const response = await fetch(`${apiEndpoint}/${dadosParaAtualizar._id}`, {
       method: 'PUT',

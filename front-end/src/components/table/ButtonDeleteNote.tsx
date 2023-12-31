@@ -10,8 +10,14 @@ type PropsButton = {
 };
 
 function ButtonModal({ dado, deleteView }: PropsButton) {
+  const dadosAtualizado = {
+    _id: dado._id
+  };
+
   return (
-    <button onClick={() => [updateDados(dado), deleteView(dado._id)]}>
+    <button
+      onClick={() => [updateDados(dadosAtualizado), deleteView(dado._id)]}
+    >
       <Image src={trashIcon} alt={'icon lixeira'} />
     </button>
   );
