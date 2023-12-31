@@ -20,7 +20,15 @@ A tela é pública, dispensando autenticação. As regras incluem criar notas (0
 ```
 git clone https://github.com/Robsonnsbr/desafio-robson-monteiro.git
 ```
+  - Abra a pasta clonada.
+```
+cd desafio-robson-monteiro
+```
 2 - entre na pasta back-end via terminal(cmd) e execute o comando de instalação e aguarde para executar o starter:
+  - Abra a pasta back-end.
+```
+cd back-end 
+```
 ```
 npm install 
 ```
@@ -28,6 +36,10 @@ npm install
 npm start
 ```
 3 - entre na pasta front-end via terminal(cmd) e execute o comando de instalação e aguarde para executar o starter:
+  - Abra a pasta front-end.
+```
+cd back-end 
+```
 ```
 npm install
 ```
