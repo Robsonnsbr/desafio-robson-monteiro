@@ -46,3 +46,8 @@ npm install
 ```
 npm run dev 
 ```
+
+### O Servidor back-end deve estar rodando em (http://localhost:4000/)
+### O Servidor front-end deve estar rodando em (http://localhost:3000/)
+
+#### ENJOY!
