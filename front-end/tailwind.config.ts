@@ -18,7 +18,8 @@ const config: Config = {
         customBlue: '#05A2C2',
         customBrown: '#C26719',
         customPink: '#CC4090',
-        customPurple: '#9B19C2'
+        customPurple: '#9B19C2',
+        customBlack: '#0F0F0F'
       }
     }
   },
