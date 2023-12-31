@@ -34,21 +34,12 @@ export class ResultadosController {
     const { disciplina, nota } = body;
     return this.resultadosService.atualizarResultado(id, disciplina, nota);
   }
-  // @Post()
-  // async criarResultado(
-  //   @Body('bimestre') bimestre: string,
-  //   @Body('disciplina') disciplina: string,
-  //   @Body('nota') nota: number
-  // ) {
-  //   return this.resultadosService.criarResultado(bimestre, disciplina, nota);
-  // }
 
   @Get()
   async obterResultados() {
     return this.resultadosService.obterTodosResultados();
   }
 
-  // Método para buscar por bimestre, por exemplo
   @Get('por-bimestre')
   async obterResultadosPorBimestre(@Query('bimestre') bimestre: string) {
     return this.resultadosService.obterResultadosPorBimestre(bimestre);

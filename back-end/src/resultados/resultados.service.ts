@@ -1,5 +1,3 @@
-// resultado.service.ts
-
 import { Injectable, BadRequestException, OnModuleInit } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
