@@ -38,11 +38,11 @@ npm start
 3 - entre na pasta front-end via terminal(cmd) e execute o comando de instalação e aguarde para executar o starter:
   - Abra a pasta front-end.
 ```
-cd back-end 
+cd front-end 
 ```
 ```
 npm install
 ```
 ```
-npm start
+npm run dev 
 ```
