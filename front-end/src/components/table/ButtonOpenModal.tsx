@@ -2,13 +2,18 @@
 
 import Image from 'next/image';
 import vectorIcon from '@/assets/icons/vector.svg';
+import { Resultado } from 'src/types/Types';
 
 interface ButtonOpenModalProps {
   modalOpen: boolean;
+  dado?: Resultado | null;
   onClick: (estado: boolean) => void;
 }
 
-function ButtonOpenModal({ modalOpen, onClick }: ButtonOpenModalProps) {
+function ButtonOpenModal({ modalOpen, dado, onClick }: ButtonOpenModalProps) {
+  // if (dado) {
+  //   console.log(dado);
+  // }
   return (
     <button
       className="bg-customYellow px-4 py-1 rounded-xl h-fit"
