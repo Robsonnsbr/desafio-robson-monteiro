@@ -58,8 +58,10 @@ function Modal({ dado, modalOpen, onClick }: PropsButton) {
             <li>
               <button
                 onClick={() => handleButtonClick('Biologia')}
-                className={`w-32 h-14 rounded-3xl bg-customPink bg-opacity-50 ${
-                  selectedDisciplina === 'Biologia' && 'bg-opacity-100'
+                className={`w-32 h-14 rounded-3xl bg-customPink  ${
+                  selectedDisciplina === 'Biologia'
+                    ? 'bg-opacity-100'
+                    : 'bg-opacity-50'
                 }`}
               >
                 Biologia
@@ -68,8 +70,10 @@ function Modal({ dado, modalOpen, onClick }: PropsButton) {
             <li>
               <button
                 onClick={() => handleButtonClick('Artes')}
-                className={`w-32 h-14 rounded-3xl bg-customBlue bg-opacity-50 ${
-                  selectedDisciplina === 'Artes' && 'bg-opacity-100'
+                className={`w-32 h-14 rounded-3xl bg-customBlue ${
+                  selectedDisciplina === 'Artes'
+                    ? 'bg-opacity-100'
+                    : 'bg-opacity-50'
                 }`}
               >
                 Artes
@@ -78,8 +82,10 @@ function Modal({ dado, modalOpen, onClick }: PropsButton) {
             <li>
               <button
                 onClick={() => handleButtonClick('Geografia')}
-                className={`w-32 h-14 rounded-3xl bg-customBrown bg-opacity-50 ${
-                  selectedDisciplina === 'Geografia' && 'bg-opacity-100'
+                className={`w-32 h-14 rounded-3xl bg-customBrown ${
+                  selectedDisciplina === 'Geografia'
+                    ? 'bg-opacity-100'
+                    : 'bg-opacity-50'
                 }`}
               >
                 Geografia
@@ -88,8 +94,10 @@ function Modal({ dado, modalOpen, onClick }: PropsButton) {
             <li>
               <button
                 onClick={() => handleButtonClick('Sociologia')}
-                className={`w-32 h-14 rounded-3xl bg-customPurple bg-opacity-50 ${
-                  selectedDisciplina === 'Sociologia' && 'bg-opacity-100'
+                className={`w-32 h-14 rounded-3xl bg-customPurple ${
+                  selectedDisciplina === 'Sociologia'
+                    ? 'bg-opacity-100'
+                    : 'bg-opacity-50'
                 }`}
               >
                 Sociologia
