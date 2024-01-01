@@ -8,6 +8,7 @@ import { getDados } from '@/app/api/dados/route';
 import { formatarData, formatarBimestre } from 'src/utils';
 import Nota from './Nota';
 import { Resultado } from 'src/types/Types';
+import Motion from '../common/Motion';
 
 function Table() {
   const [resultados, setResultados] = useState<Resultado[]>([]);
@@ -68,11 +69,13 @@ function Table() {
                       className=" flex items-start gap-4"
                     >
                       {modalOpen && (
-                        <Modal
-                          dado={dado}
-                          modalOpen={modalOpen}
-                          onClick={(estado) => setModalOpen(estado)}
-                        />
+                        <Motion motionKey="modal">
+                          <Modal
+                            dado={dado}
+                            modalOpen={modalOpen}
+                            onClick={(estado) => setModalOpen(estado)}
+                          />
+                        </Motion>
                       )}
                       <div
                         className={`flex flex-col text-left h-36 w-40 rounded-2xl justify-between ${
