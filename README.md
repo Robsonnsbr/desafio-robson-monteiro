@@ -11,7 +11,7 @@ A tela é pública, dispensando autenticação. As regras incluem criar notas (0
 
 ### Pré-requisitos:
  - node@Latest
- - latest-version(usually included in the node)
+ - npm@latest-version(usually included in the node)
 
 # AVISO! desconsiderar  readme dentro das pastas front-end/back-end
 
