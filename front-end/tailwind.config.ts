@@ -20,6 +20,11 @@ const config: Config = {
         customPink: '#CC4090',
         customPurple: '#9B19C2',
         customBlack: '#0F0F0F'
+      },
+      textColor: {
+        customYellow: '#E9FF1A',
+        customGreen: '#05FF00',
+        customRed: '#FF5964'
       }
     }
   },
