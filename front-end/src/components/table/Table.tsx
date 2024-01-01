@@ -13,12 +13,12 @@ import Motion from '../common/Motion';
 function Table() {
   const [resultados, setResultados] = useState<Resultado[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedDado, setSelectedDado] = useState<Resultado | null>(null);
+  // const [selectedDado, setSelectedDado] = useState<Resultado | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getDados();
+        const data: Resultado[] = await getDados();
         setResultados(data);
       } catch (error) {
         console.error('Erro ao buscar dados:', error);
@@ -57,7 +57,7 @@ function Table() {
                 <h1>{`Bimestre ${formatarBimestre(bimestre)}`}</h1>
                 <ButtonOpenModal
                   modalOpen={modalOpen}
-                  dado={selectedDado}
+                  // dado={selectedDado}
                   onClick={(estado) => [setModalOpen(estado)]}
                 />
               </div>
