@@ -34,7 +34,7 @@ function Modal({ dado, modalOpen, onClick }: PropsButton) {
   // const id = dado._id;
   const bimestre = dado.bimestre;
   return (
-    <div className="fixed bg-black bg-opacity-50 top-0 left-0 w-full h-full flex justify-center items-center">
+    <div className="fixed bg-black bg-opacity-40 top-0 left-0 w-full h-full flex justify-center items-center">
       <ul className="bg-customBlack min-w-[90%] sm:min-w-[40%] min-h-96 flex flex-col items-center relative text-white p-8">
         <li className="flex flex-row justify-between w-full pb-8">
           <h1 className="text-2xl">Bimestre {formatarBimestre(bimestre)}</h1>
@@ -61,7 +61,7 @@ function Modal({ dado, modalOpen, onClick }: PropsButton) {
                 className={`w-32 h-14 rounded-3xl bg-customPink  ${
                   selectedDisciplina === 'Biologia'
                     ? 'bg-opacity-100'
-                    : 'bg-opacity-50'
+                    : 'bg-opacity-30'
                 }`}
               >
                 Biologia
@@ -73,7 +73,7 @@ function Modal({ dado, modalOpen, onClick }: PropsButton) {
                 className={`w-32 h-14 rounded-3xl bg-customBlue ${
                   selectedDisciplina === 'Artes'
                     ? 'bg-opacity-100'
-                    : 'bg-opacity-50'
+                    : 'bg-opacity-30'
                 }`}
               >
                 Artes
@@ -85,7 +85,7 @@ function Modal({ dado, modalOpen, onClick }: PropsButton) {
                 className={`w-32 h-14 rounded-3xl bg-customBrown ${
                   selectedDisciplina === 'Geografia'
                     ? 'bg-opacity-100'
-                    : 'bg-opacity-50'
+                    : 'bg-opacity-30'
                 }`}
               >
                 Geografia
@@ -97,7 +97,7 @@ function Modal({ dado, modalOpen, onClick }: PropsButton) {
                 className={`w-32 h-14 rounded-3xl bg-customPurple ${
                   selectedDisciplina === 'Sociologia'
                     ? 'bg-opacity-100'
-                    : 'bg-opacity-50'
+                    : 'bg-opacity-30'
                 }`}
               >
                 Sociologia
@@ -120,7 +120,7 @@ function Modal({ dado, modalOpen, onClick }: PropsButton) {
         </li>
         <li className="flex justify-end w-full pt-4">
           <button
-            className="bg-customYellow text-black px-4 py-2 rounded-xl"
+            className="bg-customYellow text-black w-32 h-12 rounded-xl"
             onClick={() => [sendDados(), onClick(!modalOpen)]}
           >
             Confirmar
