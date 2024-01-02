@@ -42,7 +42,7 @@ export default function RootLayout({ children }: children) {
         suppressHydrationWarning={true}
         className={isValidFont() ? isValidFont()?.className : 'font-sans'}
       >
-        <Motion>
+        <Motion motionKey="body">
           <div className="Wrapper-container">{children}</div>
         </Motion>
       </body>
