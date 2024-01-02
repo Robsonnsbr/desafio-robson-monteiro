@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { updateDados } from 'src/app/api/dados/route';
 import { Resultado } from 'src/types/Types';
 import { formatarBimestre } from 'src/utils';
@@ -18,17 +18,33 @@ enum Disciplina {
 }
 
 function Modal({ dadosBimestre, openModal, atualizarPai }: PropsButton) {
-  const [selectedDisciplina, setSelectedDisciplina] =
-    useState<Disciplina | null>(null);
+  const [selectedDisciplina, setSelectedDisciplina] = useState<Disciplina>(
+    Disciplina.Biologia
+  );
   const [newNota, setNewNota] = useState<number | null>(dadosBimestre.nota);
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = event.target.value;
+  const [isValidNota, setIsValidNota] = useState<boolean>(true);
 
-    if (/^(0(\.\d{0,2})?|10(\.0{0,2})?|[1-9](\.\d{0,2})?)$/.test(inputValue)) {
-      setNewNota(parseFloat(inputValue));
-      // TODO: Parei aqui...
-    }
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue: string = event.target.value;
+    validarNumeroFloat(inputValue);
   };
+
+  useEffect(() => {
+    if (isValidNota && newNota) {
+      setNewNota(parseFloat(newNota!.toFixed(1)));
+    }
+  }, [isValidNota]);
+
+  function validarNumeroFloat(inputValue: string) {
+    const regex = /^(10(\.0{1,2})?|[0-9](\.\d{0,2})?)$/;
+
+    if (regex.test(inputValue) || inputValue === '') {
+      setNewNota(parseFloat(inputValue));
+      setIsValidNota(true);
+    } else {
+      setIsValidNota(false);
+    }
+  }
 
   const handleButtonClick = (disciplina: Disciplina) => {
     setSelectedDisciplina(disciplina);
@@ -39,20 +55,24 @@ function Modal({ dadosBimestre, openModal, atualizarPai }: PropsButton) {
     bimestre: dadosBimestre.bimestre,
     createdAt: dadosBimestre.createdAt,
     disciplina: selectedDisciplina,
-    nota: newNota,
+    nota: newNota || 0,
     updatedAt: dadosBimestre.updatedAt
   };
 
   const sendDados = () => {
-    updateDados(dadosBimestreAtualizado);
-    atualizarPai();
+    if (isValidNota) {
+      updateDados(dadosBimestreAtualizado);
+      atualizarPai();
+    } else {
+      console.log('Nota inválida. Não foi possível enviar os dados.');
+    }
   };
 
   const bimestre = dadosBimestre.bimestre;
   return (
-    <div className="fixed bg-black bg-opacity-40 top-0 left-0 w-full h-full flex justify-center items-center">
-      <ul className="bg-customBlack min-w-[90%] sm:min-w-[40%] min-h-96 flex flex-col items-center relative text-white p-8">
-        <li className="flex flex-row justify-between w-full pb-8">
+    <div className="fixed bg-black bg-opacity-40 top-0 left-0 w-full h-full flex justify-center items-center z-20">
+      <ul className="bg-customBlack min-w-[90%] sm:min-w-[40%] min-h-96 flex flex-col items-center relative text-white p-8 z-20">
+        <li className="flex flex-row justify-between w-full pb-8 z-20">
           <h1 className="text-2xl">Bimestre {formatarBimestre(bimestre)}</h1>
           <button className="self-start" onClick={openModal}>
             <svg
@@ -128,8 +148,9 @@ function Modal({ dadosBimestre, openModal, atualizarPai }: PropsButton) {
           <input
             id="nota"
             name="nota"
-            type="text"
+            type="number"
             className="bg-customBlack w-24 border-2 border-gray-700 rounded-xl py-3  px-4 text-center"
+            placeholder="0"
             value={newNota || 0}
             onChange={handleChange}
           />
