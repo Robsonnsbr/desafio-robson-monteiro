@@ -1,44 +1,60 @@
 'use client';
 import React, { useState } from 'react';
+import { updateDados } from 'src/app/api/dados/route';
 import { Resultado } from 'src/types/Types';
 import { formatarBimestre } from 'src/utils';
 
 type PropsButton = {
-  dado: Resultado;
-  modalOpen: boolean;
-  onClick: (estado: boolean) => void;
+  dadosBimestre: Resultado;
+  openModal: () => void;
+  atualizarPai: () => void;
 };
 
-const sendDados = () => {
-  console.log('Dados Enviados!');
-};
+enum Disciplina {
+  Biologia = 'Biologia',
+  Artes = 'Artes',
+  Geografia = 'Geografia',
+  Sociologia = 'Sociologia'
+}
 
-function Modal({ dado, modalOpen, onClick }: PropsButton) {
-  const [selectedDisciplina, setSelectedDisciplina] = useState<string | null>(
-    null
-  );
-  const [nota, setNota] = useState<number>(dado.nota);
+function Modal({ dadosBimestre, openModal, atualizarPai }: PropsButton) {
+  const [selectedDisciplina, setSelectedDisciplina] =
+    useState<Disciplina | null>(null);
+  const [newNota, setNewNota] = useState<number | null>(dadosBimestre.nota);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
 
     if (/^(0(\.\d{0,2})?|10(\.0{0,2})?|[1-9](\.\d{0,2})?)$/.test(inputValue)) {
-      setNota(parseFloat(inputValue));
+      setNewNota(parseFloat(inputValue));
       // TODO: Parei aqui...
     }
   };
 
-  const handleButtonClick = (disciplina: string) => {
+  const handleButtonClick = (disciplina: Disciplina) => {
     setSelectedDisciplina(disciplina);
   };
 
-  // const id = dado._id;
-  const bimestre = dado.bimestre;
+  const dadosBimestreAtualizado: Resultado = {
+    _id: dadosBimestre._id,
+    bimestre: dadosBimestre.bimestre,
+    createdAt: dadosBimestre.createdAt,
+    disciplina: selectedDisciplina,
+    nota: newNota,
+    updatedAt: dadosBimestre.updatedAt
+  };
+
+  const sendDados = () => {
+    updateDados(dadosBimestreAtualizado);
+    atualizarPai();
+  };
+
+  const bimestre = dadosBimestre.bimestre;
   return (
     <div className="fixed bg-black bg-opacity-40 top-0 left-0 w-full h-full flex justify-center items-center">
       <ul className="bg-customBlack min-w-[90%] sm:min-w-[40%] min-h-96 flex flex-col items-center relative text-white p-8">
         <li className="flex flex-row justify-between w-full pb-8">
           <h1 className="text-2xl">Bimestre {formatarBimestre(bimestre)}</h1>
-          <button className="self-start" onClick={() => onClick(!modalOpen)}>
+          <button className="self-start" onClick={openModal}>
             <svg
               width="20"
               height="20"
@@ -57,7 +73,7 @@ function Modal({ dado, modalOpen, onClick }: PropsButton) {
           <ul className="min-w-72 grid grid-cols-2 sm:flex gap-4 justify-between">
             <li>
               <button
-                onClick={() => handleButtonClick('Biologia')}
+                onClick={() => handleButtonClick(Disciplina.Biologia)}
                 className={`w-32 h-14 rounded-3xl bg-customPink  ${
                   selectedDisciplina === 'Biologia'
                     ? 'bg-opacity-100'
@@ -69,7 +85,7 @@ function Modal({ dado, modalOpen, onClick }: PropsButton) {
             </li>
             <li>
               <button
-                onClick={() => handleButtonClick('Artes')}
+                onClick={() => handleButtonClick(Disciplina.Artes)}
                 className={`w-32 h-14 rounded-3xl bg-customBlue ${
                   selectedDisciplina === 'Artes'
                     ? 'bg-opacity-100'
@@ -81,7 +97,7 @@ function Modal({ dado, modalOpen, onClick }: PropsButton) {
             </li>
             <li>
               <button
-                onClick={() => handleButtonClick('Geografia')}
+                onClick={() => handleButtonClick(Disciplina.Geografia)}
                 className={`w-32 h-14 rounded-3xl bg-customBrown ${
                   selectedDisciplina === 'Geografia'
                     ? 'bg-opacity-100'
@@ -93,7 +109,7 @@ function Modal({ dado, modalOpen, onClick }: PropsButton) {
             </li>
             <li>
               <button
-                onClick={() => handleButtonClick('Sociologia')}
+                onClick={() => handleButtonClick(Disciplina.Sociologia)}
                 className={`w-32 h-14 rounded-3xl bg-customPurple ${
                   selectedDisciplina === 'Sociologia'
                     ? 'bg-opacity-100'
@@ -114,14 +130,14 @@ function Modal({ dado, modalOpen, onClick }: PropsButton) {
             name="nota"
             type="text"
             className="bg-customBlack w-24 border-2 border-gray-700 rounded-xl py-3  px-4 text-center"
-            value={nota}
+            value={newNota || 0}
             onChange={handleChange}
           />
         </li>
         <li className="flex justify-end w-full pt-4">
           <button
             className="bg-customYellow text-black w-32 h-12 rounded-xl"
-            onClick={() => [sendDados(), onClick(!modalOpen)]}
+            onClick={() => [sendDados(), openModal()]}
           >
             Confirmar
           </button>

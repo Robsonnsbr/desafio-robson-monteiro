@@ -1,4 +1,4 @@
-import formatarData from './date-utils';
-import formatarBimestre from './bimestre-utils';
+import formatarData from './formatarData';
+import formatarBimestre from './formatarBimestre';
 
 export { formatarData, formatarBimestre };
