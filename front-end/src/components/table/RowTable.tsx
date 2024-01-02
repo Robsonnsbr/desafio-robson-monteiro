@@ -11,16 +11,17 @@ import Tooltip from '../common/ToolTip';
 
 type PropsRow = {
   resultado: Resultado;
-  atualizarPai: () => void;
+  atualizarAvo: () => void;
+  atualizarF: boolean;
 };
 
-function RowTable({ resultado, atualizarPai }: PropsRow) {
+function RowTable({ resultado, atualizarAvo, atualizarF }: PropsRow) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [dadosBimestre, setDadosBimestre] = useState<Resultado>(resultado);
-
   useEffect(() => {
     setDadosBimestre(resultado);
-  }, [resultado]);
+    console.log('Atualizei filho');
+  }, [resultado, atualizarF]);
 
   const dadosDeleteView: Resultado = {
     _id: dadosBimestre._id,
@@ -76,7 +77,7 @@ function RowTable({ resultado, atualizarPai }: PropsRow) {
           <Modal
             dadosBimestre={dadosBimestre}
             openModal={openModal}
-            atualizarPai={atualizarPai}
+            atualizarAvo={atualizarAvo}
           />
         </Motion>
       )}
