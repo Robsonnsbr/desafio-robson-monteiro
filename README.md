@@ -13,7 +13,7 @@ A tela é pública, dispensando autenticação. As regras incluem criar notas (0
  - node@Latest
  - npm@latest-version(usually included in the node)
 
-# AVISO! (No momento estou com problema no re-render do componente RowTable "para incluir dados pode faze-los e depois das f5, será solucionado!")
+# AVISO! (No momento estou com problema no re-render do componente RowTable "para incluir dados pode faze-los e depois dar f5, obs: será solucionado!")
 # AVISO! desconsiderar  readme dentro das pastas front-end/back-end
 
 ### Guia de instalação do desafio e seus pacotes.
