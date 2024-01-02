@@ -72,7 +72,7 @@ function RowTable({ resultado, atualizarPai }: PropsRow) {
         </Motion>
       )}
       {isOpenModal && (
-        <Motion motionKey={'Modal'}>
+        <Motion motionKey={'modal'}>
           <Modal
             dadosBimestre={dadosBimestre}
             openModal={openModal}
