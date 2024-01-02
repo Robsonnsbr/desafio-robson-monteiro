@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { updateDados } from 'src/app/api/dados/route';
 import { Resultado } from 'src/types/Types';
 import { formatarBimestre } from 'src/utils';
@@ -22,29 +22,17 @@ function Modal({ dadosBimestre, openModal, atualizarPai }: PropsButton) {
     Disciplina.Biologia
   );
   const [newNota, setNewNota] = useState<number | null>(dadosBimestre.nota);
-  const [isValidNota, setIsValidNota] = useState<boolean>(true);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue: string = event.target.value;
-    validarNumeroFloat(inputValue);
-  };
 
-  useEffect(() => {
-    if (isValidNota && newNota) {
-      setNewNota(parseFloat(newNota!.toFixed(1)));
-    }
-  }, [isValidNota]);
-
-  function validarNumeroFloat(inputValue: string) {
-    const regex = /^(10(\.0{1,2})?|[0-9](\.\d{0,2})?)$/;
-
-    if (regex.test(inputValue) || inputValue === '') {
+    if (inputValue === '10') {
       setNewNota(parseFloat(inputValue));
-      setIsValidNota(true);
     } else {
-      setIsValidNota(false);
+      const inputFormat = inputValue.slice(0, 1) + '.' + inputValue.slice(1);
+      setNewNota(parseFloat(inputFormat));
     }
-  }
+  };
 
   const handleButtonClick = (disciplina: Disciplina) => {
     setSelectedDisciplina(disciplina);
@@ -60,12 +48,8 @@ function Modal({ dadosBimestre, openModal, atualizarPai }: PropsButton) {
   };
 
   const sendDados = () => {
-    if (isValidNota) {
-      updateDados(dadosBimestreAtualizado);
-      atualizarPai();
-    } else {
-      console.log('Nota inválida. Não foi possível enviar os dados.');
-    }
+    updateDados(dadosBimestreAtualizado);
+    atualizarPai();
   };
 
   const bimestre = dadosBimestre.bimestre;
@@ -148,8 +132,9 @@ function Modal({ dadosBimestre, openModal, atualizarPai }: PropsButton) {
           <input
             id="nota"
             name="nota"
-            type="number"
+            type="text"
             className="bg-customBlack w-24 border-2 border-gray-700 rounded-xl py-3  px-4 text-center"
+            maxLength={2}
             placeholder="0"
             value={newNota || 0}
             onChange={handleChange}
