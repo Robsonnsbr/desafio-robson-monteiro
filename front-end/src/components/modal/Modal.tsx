@@ -7,7 +7,7 @@ import { formatarBimestre } from 'src/utils';
 type PropsButton = {
   dadosBimestre: Resultado;
   openModal: () => void;
-  atualizarAvo: () => void;
+  handleAtualizarAvo: () => void;
 };
 
 enum Disciplina {
@@ -17,7 +17,7 @@ enum Disciplina {
   Sociologia = 'Sociologia'
 }
 
-function Modal({ dadosBimestre, openModal, atualizarAvo }: PropsButton) {
+function Modal({ dadosBimestre, openModal, handleAtualizarAvo }: PropsButton) {
   const [selectedDisciplina, setSelectedDisciplina] = useState<Disciplina>(
     Disciplina.Biologia
   );
@@ -49,7 +49,7 @@ function Modal({ dadosBimestre, openModal, atualizarAvo }: PropsButton) {
 
   const sendDados = () => {
     updateDados(dadosBimestreAtualizado);
-    atualizarAvo();
+    handleAtualizarAvo();
     // window.location.reload();
   };
 

@@ -11,16 +11,16 @@ import Tooltip from '../common/ToolTip';
 
 type PropsRow = {
   resultado: Resultado;
-  atualizarAvo: () => void;
-  atualizarF: boolean;
+  handleAtualizarAvo: () => void;
+  atualizarFilho: boolean;
 };
 
-function RowTable({ resultado, atualizarAvo, atualizarF }: PropsRow) {
+function RowTable({ resultado, handleAtualizarAvo, atualizarFilho }: PropsRow) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [dadosBimestre, setDadosBimestre] = useState<Resultado>(resultado);
   useEffect(() => {
     setDadosBimestre(resultado);
-  }, [resultado, atualizarF]);
+  }, [resultado, atualizarFilho]);
 
   const dadosDeleteView: Resultado = {
     _id: dadosBimestre._id,
@@ -57,9 +57,15 @@ function RowTable({ resultado, atualizarAvo, atualizarF }: PropsRow) {
                       : 'bg-customPurple'
               }`}
             >
-              <h3 className="pl-4 pt-4">{dadosBimestre.disciplina}</h3>
+              <div>
+                <h3 className="pl-4 pt-4 text-lg">
+                  {dadosBimestre.disciplina}
+                </h3>
 
-              <p className="pl-4">{formatarData(dadosBimestre.updatedAt)}</p>
+                <p className="pl-4 text-xs">
+                  {formatarData(dadosBimestre.updatedAt)}
+                </p>
+              </div>
               <Nota nota={dadosBimestre.nota || 0} />
             </div>
             <Tooltip text={'Remover'}>
@@ -76,7 +82,7 @@ function RowTable({ resultado, atualizarAvo, atualizarF }: PropsRow) {
           <Modal
             dadosBimestre={dadosBimestre}
             openModal={openModal}
-            atualizarAvo={atualizarAvo}
+            handleAtualizarAvo={handleAtualizarAvo}
           />
         </Motion>
       )}

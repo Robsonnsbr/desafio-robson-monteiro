@@ -6,18 +6,18 @@ import RowTable from './RowTable';
 
 function Table() {
   const [resultados, setResultados] = useState<Resultado[]>([]);
-  const [atualizarA, setAtualizarA] = useState(false);
-  const [atualizarF, setAtualizarF] = useState(false);
+  const [atualizarAvo, setAtualizarAvo] = useState(false);
+  const [atualizarFilho, setAtualizarFilho] = useState(false);
 
-  const atualizarAvo = () => {
-    setAtualizarA(!atualizarA);
+  const handleAtualizarAvo = () => {
+    setAtualizarAvo(!atualizarAvo);
   };
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data: Resultado[] = await getDados();
         setResultados(data);
-        setAtualizarF(!atualizarF);
+        setAtualizarFilho(!atualizarFilho);
       } catch (error) {
         console.error('Erro ao buscar dados:', error);
       }
@@ -35,7 +35,7 @@ function Table() {
     };
 
     executeEffect();
-  }, [atualizarA]);
+  }, [atualizarAvo]);
 
   return (
     <div className="items-center h-full pt-20 min-w-80">
@@ -43,8 +43,8 @@ function Table() {
         <RowTable
           key={resultado._id}
           resultado={resultado}
-          atualizarAvo={atualizarAvo}
-          atualizarF={atualizarF}
+          handleAtualizarAvo={handleAtualizarAvo}
+          atualizarFilho={atualizarFilho}
         />
       ))}
     </div>

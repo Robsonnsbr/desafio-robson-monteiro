@@ -39,7 +39,7 @@ function Nota({ nota }: NotaProps) {
   }, [corStroke, nota, pathRef1, pathRef2, pathRef3, pathRef4]);
 
   return (
-    <div className="pl-4 h-fit w-full bg-black bg-opacity-50 flex gap-2 mb-4 p-1">
+    <div className="text-xs items-center pl-4 h-fit w-full bg-black bg-opacity-50 flex gap-2 mb-4 p-1">
       <svg
         width="21"
         height="21"
