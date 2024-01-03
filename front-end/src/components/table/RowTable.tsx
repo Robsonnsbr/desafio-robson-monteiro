@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Resultado } from 'src/types/Types';
 import { formatarBimestre, formatarData } from 'src/utils';
-import ButtonDeleteNote from './ButtonDeleteNote';
+import ButtonDeleteGrade from './ButtonDeleteGrade';
 import ButtonOpenModal from './ButtonOpenModal';
 import Modal from '../modal/Modal';
 import Nota from './Nota';
@@ -69,7 +69,7 @@ function RowTable({ resultado, handleAtualizarAvo, atualizarFilho }: PropsRow) {
               <Nota nota={dadosBimestre.nota || 0} />
             </div>
             <Tooltip text={'Remover'}>
-              <ButtonDeleteNote
+              <ButtonDeleteGrade
                 dadosBimestre={dadosBimestre}
                 deleteView={() => setDadosBimestre(dadosDeleteView)}
               />

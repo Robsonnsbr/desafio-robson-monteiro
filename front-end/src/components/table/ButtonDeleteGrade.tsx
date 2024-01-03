@@ -9,7 +9,7 @@ type PropsButton = {
   deleteView: (id: string) => void;
 };
 
-function ButtonModal({ dadosBimestre, deleteView }: PropsButton) {
+function ButtonDeleteGrade({ dadosBimestre, deleteView }: PropsButton) {
   const dadosAtualizado = {
     _id: dadosBimestre._id
   };
@@ -26,4 +26,4 @@ function ButtonModal({ dadosBimestre, deleteView }: PropsButton) {
   );
 }
 
-export default ButtonModal;
+export default ButtonDeleteGrade;
