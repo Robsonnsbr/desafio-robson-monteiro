@@ -50,7 +50,6 @@ function Modal({ dadosBimestre, openModal, handleAtualizarAvo }: PropsButton) {
   const sendDados = () => {
     updateDados(dadosBimestreAtualizado);
     handleAtualizarAvo();
-    // window.location.reload();
   };
 
   const bimestre = dadosBimestre.bimestre;
