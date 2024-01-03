@@ -6,9 +6,14 @@ import { ResultadosModule } from './resultados/resultados.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      'mongodb+srv://root:root@repositorygithub.nghxluq.mongodb.net/repositoryGitHub?retryWrites=true&w=majority'
-    ),
+    MongooseModule.forRootAsync({
+      useFactory: async () => {
+        const uri =
+          'mongodb+srv://root:root@repositorygithub.nghxluq.mongodb.net/repositoryGitHub?retryWrites=true&w=majority';
+        console.log('Conectado ao MongoDB com sucesso!');
+        return { uri };
+      }
+    }),
     ResultadosModule
   ],
   controllers: [AppController],

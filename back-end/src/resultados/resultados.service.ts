@@ -23,10 +23,12 @@ export class ResultadosService implements OnModuleInit {
         try {
           const resultado = new this.resultadoModel({ bimestre });
           await resultado.save();
+          console.log('Sucesso ao criar tabela de dados!');
         } catch (error) {
-          console.error(error);
+          console.error('Erro ao tentar criar a Tabela Resultado', error);
         }
       }
+      console.warn('Tabela de dados pronta!');
     }
   }
 
@@ -44,30 +46,12 @@ export class ResultadosService implements OnModuleInit {
       resultadoExistente.disciplina = disciplina;
       resultadoExistente.nota = nota;
       const resultadoAtualizado = await resultadoExistente.save();
+      console.log('Nota e Disciplina Atualizados!');
       return resultadoAtualizado;
     } catch (error) {
       console.error(error);
       throw new BadRequestException('Erro ao atualizar o resultado');
     }
-  }
-
-  async criarResultado(
-    bimestre: string,
-    disciplina: string,
-    nota: number
-  ): Promise<Resultado> {
-    const resultadoExistente = await this.resultadoModel
-      .findOne({ bimestre, disciplina })
-      .exec();
-
-    if (resultadoExistente) {
-      throw new BadRequestException(
-        `Já existe um resultado para a disciplina ${disciplina} no bimestre ${bimestre}`
-      );
-    }
-
-    const resultado = new this.resultadoModel({ bimestre, disciplina, nota });
-    return resultado.save();
   }
 
   async obterTodosResultados(): Promise<Resultado[]> {
@@ -78,7 +62,7 @@ export class ResultadosService implements OnModuleInit {
     return this.resultadoModel.find({ bimestre }).exec();
   }
 
-  async excluirResultado(id: string): Promise<void> {
+  async excluirBimestre(id: string): Promise<void> {
     await this.resultadoModel.findByIdAndDelete(id).exec();
   }
 }
