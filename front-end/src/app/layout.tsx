@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import { Raleway, Inter, Montserrat } from 'next/font/google';
-// import { MobileProvider } from "src/context/exempleProvider";
 
 const montserrat = Montserrat({ subsets: ['latin'] });
 const raleway = Raleway({ subsets: ['latin'] });
