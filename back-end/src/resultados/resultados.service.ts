@@ -41,10 +41,8 @@ export class ResultadosService implements OnModuleInit {
     }
 
     try {
-      console.log(disciplina);
       resultadoExistente.disciplina = disciplina;
       resultadoExistente.nota = nota;
-      // console.log(resultadoExistente);
       const resultadoAtualizado = await resultadoExistente.save();
       return resultadoAtualizado;
     } catch (error) {

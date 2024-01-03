@@ -29,8 +29,6 @@ export class ResultadosController {
       nota: number;
     }
   ) {
-    console.log(body);
-    console.log(id);
     const { disciplina, nota } = body;
     return this.resultadosService.atualizarResultado(id, disciplina, nota);
   }

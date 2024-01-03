@@ -20,7 +20,6 @@ function RowTable({ resultado, atualizarAvo, atualizarF }: PropsRow) {
   const [dadosBimestre, setDadosBimestre] = useState<Resultado>(resultado);
   useEffect(() => {
     setDadosBimestre(resultado);
-    console.log('Atualizei filho');
   }, [resultado, atualizarF]);
 
   const dadosDeleteView: Resultado = {
