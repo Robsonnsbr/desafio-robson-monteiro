@@ -1,4 +1,4 @@
-# DESAFIO - ROBSON MONTEIRO - STATUS: Em Desenvolvimento...
+# DESAFIO - ROBSON MONTEIRO - STATUS: CONCLUÍDO
 
 ## RESUMO
 Desafio Backend
@@ -13,7 +13,7 @@ A tela é pública, dispensando autenticação. As regras incluem criar notas (0
  - node@Latest
  - npm@latest-version(usually included in the node)
 
-# AVISO! desconsiderar  readme dentro das pastas front-end/back-end
+# AVISO! Ignore o README dentro das pastas front-end/back-end.
 
 ### Guia de instalação do desafio e seus pacotes.
  1 - clone o repositório: desafio-robson-monteiro
@@ -24,7 +24,7 @@ git clone https://github.com/Robsonnsbr/desafio-robson-monteiro.git
 ```
 cd desafio-robson-monteiro
 ```
-2 - entre na pasta back-end via terminal(cmd) e execute o comando de instalação e aguarde para executar o starter:
+2 - Acesse a pasta back-end pelo terminal (cmd), execute o comando de instalação e aguarde antes de executar o starter:
   - Abra a pasta back-end.
 ```
 cd back-end 
@@ -35,7 +35,7 @@ npm install
 ```
 npm start
 ```
-3 - entre na pasta front-end via terminal(cmd) e execute o comando de instalação e aguarde para executar o starter:
+3 - Acesse a pasta front-end pelo terminal (cmd), execute o comando de instalação e aguarde para executar o starter:
   - Abra a pasta front-end.
 ```
 cd front-end 
@@ -47,7 +47,8 @@ npm install
 npm run dev 
 ```
 
-### O Servidor back-end deve estar rodando em (http://localhost:4000/)
-### O Servidor front-end deve estar rodando em (http://localhost:3000/)
+### O servidor back-end deve estar em execução em (http://localhost:4000/)
+### O servidor front-end deve estar em execução em (http://localhost:3000/)
+#### AVISO! O primeiro build do front-end pode demorar. Por favor, atualize a página (F5) e aguarde.
 
 #### ENJOY!
