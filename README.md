@@ -49,6 +49,6 @@ npm run dev
 
 ### O servidor back-end deve estar em execução em (http://localhost:4000/)
 ### O servidor front-end deve estar em execução em (http://localhost:3000/)
-#### AVISO! O primeiro build do front-end pode demorar. Por favor, atualize a página (F5) e aguarde.
+#### AVISO! O primeiro build do front-end é iniciado após o primeiro acesso a rota. Por favor, acesse a rota, atualize a página (F5) e aguarde.
 
 #### ENJOY!
