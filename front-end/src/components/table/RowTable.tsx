@@ -15,12 +15,13 @@ type PropsRow = {
   atualizarFilho: boolean;
 };
 
-function RowTable({ resultado, handleAtualizarAvo, atualizarFilho }: PropsRow) {
+const RowTable: React.FC<PropsRow> = ({
+  resultado,
+  handleAtualizarAvo,
+  atualizarFilho
+}) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [dadosBimestre, setDadosBimestre] = useState<Resultado>(resultado);
-  useEffect(() => {
-    setDadosBimestre(resultado);
-  }, [resultado, atualizarFilho]);
 
   const dadosDeleteView: Resultado = {
     _id: dadosBimestre._id,
@@ -30,6 +31,10 @@ function RowTable({ resultado, handleAtualizarAvo, atualizarFilho }: PropsRow) {
     nota: null,
     updatedAt: null
   };
+
+  useEffect(() => {
+    setDadosBimestre(resultado);
+  }, [resultado, atualizarFilho]);
 
   const openModal = () => {
     setIsOpenModal(!isOpenModal);
@@ -45,7 +50,7 @@ function RowTable({ resultado, handleAtualizarAvo, atualizarFilho }: PropsRow) {
       </div>
       {dadosBimestre.disciplina && (
         <Motion motionKey={'infoTable'}>
-          <div className=" flex flex-row items-start gap-4">
+          <div className="flex flex-row items-start gap-4">
             <div
               className={`flex flex-col text-left h-36 w-40 rounded-2xl justify-between ${
                 dadosBimestre.disciplina === 'Biologia'
@@ -61,7 +66,6 @@ function RowTable({ resultado, handleAtualizarAvo, atualizarFilho }: PropsRow) {
                 <h3 className="pl-4 pt-4 text-lg">
                   {dadosBimestre.disciplina}
                 </h3>
-
                 <p className="pl-4 text-xs">
                   {formatarData(dadosBimestre.updatedAt)}
                 </p>
@@ -88,6 +92,6 @@ function RowTable({ resultado, handleAtualizarAvo, atualizarFilho }: PropsRow) {
       )}
     </div>
   );
-}
+};
 
 export default RowTable;
