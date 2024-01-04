@@ -38,11 +38,10 @@ function Modal({ dadosBimestre, openModal, handleAtualizarAvo }: PropsButton) {
       setIsCanSend(false);
       setTimeout(() => {
         setIsCanSend(true);
-        openModal();
       }, 4000);
     }
   };
-
+  console.log(isCanSend);
   const bimestre = dadosBimestre.bimestre;
 
   return (
