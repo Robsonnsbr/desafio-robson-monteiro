@@ -69,7 +69,7 @@ function Modal({ dadosBimestre, openModal, handleAtualizarAvo }: PropsButton) {
           </button>
         </li>
         <li className="text-left w-full text-lg">
-          <h3 className="pb-4">Disciplina</h3>
+          <h3 className="pb-4">{Disciplina.BIOLOGIA}</h3>
         </li>
         <li className="w-full">
           <ul className="min-w-72 grid grid-cols-2 sm:flex gap-4 justify-between">
@@ -98,7 +98,7 @@ function Modal({ dadosBimestre, openModal, handleAtualizarAvo }: PropsButton) {
                     : 'bg-opacity-30'
                 }`}
               >
-                Artes
+                {Disciplina.ARTES}
               </button>
             </li>
             <li>

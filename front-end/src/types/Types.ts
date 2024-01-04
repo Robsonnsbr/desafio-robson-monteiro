@@ -1,7 +1,7 @@
 export interface Resultado {
   _id: string;
   bimestre: Bimestre;
-  disciplina: Disciplina;
+  disciplina: Disciplina | null;
   nota: number | null;
   createdAt: Date;
   updatedAt: Date | null;

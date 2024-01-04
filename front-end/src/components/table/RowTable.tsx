@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { Resultado } from 'src/types/Types';
+import { Disciplina, Resultado } from 'src/types/Types';
 import { formatarBimestre, formatarData } from 'src/utils';
 import ButtonDeleteGrade from './ButtonDeleteGrade';
 import ButtonOpenModal from './ButtonOpenModal';
@@ -53,11 +53,11 @@ const RowTable: React.FC<PropsRow> = ({
           <div className="flex flex-row items-start gap-4">
             <div
               className={`flex flex-col text-left h-36 w-40 rounded-2xl justify-between ${
-                dadosBimestre.disciplina === 'Biologia'
+                dadosBimestre.disciplina === Disciplina.BIOLOGIA
                   ? 'bg-customPink'
-                  : dadosBimestre.disciplina === 'Artes'
+                  : dadosBimestre.disciplina === Disciplina.ARTES
                     ? 'bg-customBlue'
-                    : dadosBimestre.disciplina === 'Geografia'
+                    : dadosBimestre.disciplina === Disciplina.GEOGRAFIA
                       ? 'bg-customBrown'
                       : 'bg-customPurple'
               }`}
