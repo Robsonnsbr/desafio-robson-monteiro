@@ -84,7 +84,7 @@ function Modal({ dadosBimestre, openModal, handleAtualizarAvo }: PropsButton) {
                     : 'bg-opacity-30'
                 }`}
               >
-                {Disciplina.ARTES}
+                {Disciplina.BIOLOGIA}
               </button>
             </li>
             <li>
