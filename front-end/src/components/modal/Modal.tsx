@@ -1,8 +1,15 @@
 'use client';
+
 import React, { useState } from 'react';
-import { updateDados } from 'src/app/api/dados/route';
-import { Resultado } from 'src/types/Types';
 import { formatarBimestre } from 'src/utils';
+import { Resultado, Disciplina } from 'src/types/Types';
+
+import {
+  handleInputChange,
+  handleButtonClick,
+  sendNewData,
+  canSendData
+} from './modalFunctions';
 
 type PropsButton = {
   dadosBimestre: Resultado;
@@ -10,52 +17,43 @@ type PropsButton = {
   handleAtualizarAvo: () => void;
 };
 
-enum Disciplina {
-  Biologia = 'Biologia',
-  Artes = 'Artes',
-  Geografia = 'Geografia',
-  Sociologia = 'Sociologia'
-}
-
 function Modal({ dadosBimestre, openModal, handleAtualizarAvo }: PropsButton) {
   const [selectedDisciplina, setSelectedDisciplina] = useState<Disciplina>(
-    Disciplina.Biologia
+    Disciplina.BIOLOGIA
   );
-  const [newNota, setNewNota] = useState<number | null>(dadosBimestre.nota);
+  const [newGrade, setNewGrade] = useState<number | null>(dadosBimestre.nota);
+  const [isCanSend, setIsCanSend] = useState<boolean>(true);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue: string = event.target.value;
+    handleInputChange(event, setNewGrade);
+  };
 
-    if (inputValue === '10') {
-      setNewNota(parseFloat(inputValue));
+  const handleNonShipping = () => {
+    const isCanSend = canSendData(dadosBimestre);
+
+    if (isCanSend) {
+      setIsCanSend(true);
+      openModal();
     } else {
-      const inputFormat = inputValue.slice(0, 1) + '.' + inputValue.slice(1);
-      setNewNota(parseFloat(inputFormat));
+      setIsCanSend(false);
+      setTimeout(() => {
+        setIsCanSend(true);
+        openModal();
+      }, 4000);
     }
   };
 
-  const handleButtonClick = (disciplina: Disciplina) => {
-    setSelectedDisciplina(disciplina);
-  };
-
-  const dadosBimestreAtualizado: Resultado = {
-    _id: dadosBimestre._id,
-    bimestre: dadosBimestre.bimestre,
-    createdAt: dadosBimestre.createdAt,
-    disciplina: selectedDisciplina,
-    nota: newNota || 0,
-    updatedAt: dadosBimestre.updatedAt
-  };
-
-  const sendDados = () => {
-    updateDados(dadosBimestreAtualizado);
-    handleAtualizarAvo();
-  };
-
   const bimestre = dadosBimestre.bimestre;
+
   return (
-    <div className="fixed bg-black bg-opacity-40 top-0 left-0 w-full h-full flex justify-center items-center z-20">
-      <ul className="bg-customBlack min-w-[90%] sm:min-w-[40%] min-h-96 flex flex-col items-center relative text-white p-8 z-20">
+    <div
+      className={`fixed bg-black bg-opacity-40 top-0 left-0 w-full h-full flex justify-center items-center z-20`}
+    >
+      <ul
+        className={`bg-customBlack min-w-[90%] sm:min-w-[40%] min-h-96 flex flex-col items-center relative text-white p-8 z-20 ${
+          !isCanSend ? 'border-2 border-red-800' : ''
+        }`}
+      >
         <li className="flex flex-row justify-between w-full pb-8 z-20">
           <h1 className="text-2xl">Bimestre {formatarBimestre(bimestre)}</h1>
           <button className="self-start" onClick={openModal}>
@@ -77,21 +75,25 @@ function Modal({ dadosBimestre, openModal, handleAtualizarAvo }: PropsButton) {
           <ul className="min-w-72 grid grid-cols-2 sm:flex gap-4 justify-between">
             <li>
               <button
-                onClick={() => handleButtonClick(Disciplina.Biologia)}
+                onClick={() =>
+                  handleButtonClick(Disciplina.BIOLOGIA, setSelectedDisciplina)
+                }
                 className={`w-32 h-14 rounded-3xl bg-customPink  ${
                   selectedDisciplina === 'Biologia'
                     ? 'bg-opacity-100'
                     : 'bg-opacity-30'
                 }`}
               >
-                Biologia
+                {Disciplina.ARTES}
               </button>
             </li>
             <li>
               <button
-                onClick={() => handleButtonClick(Disciplina.Artes)}
+                onClick={() =>
+                  handleButtonClick(Disciplina.ARTES, setSelectedDisciplina)
+                }
                 className={`w-32 h-14 rounded-3xl bg-customBlue ${
-                  selectedDisciplina === 'Artes'
+                  selectedDisciplina === Disciplina.ARTES
                     ? 'bg-opacity-100'
                     : 'bg-opacity-30'
                 }`}
@@ -101,26 +103,33 @@ function Modal({ dadosBimestre, openModal, handleAtualizarAvo }: PropsButton) {
             </li>
             <li>
               <button
-                onClick={() => handleButtonClick(Disciplina.Geografia)}
+                onClick={() =>
+                  handleButtonClick(Disciplina.GEOGRAFIA, setSelectedDisciplina)
+                }
                 className={`w-32 h-14 rounded-3xl bg-customBrown ${
-                  selectedDisciplina === 'Geografia'
+                  selectedDisciplina === Disciplina.GEOGRAFIA
                     ? 'bg-opacity-100'
                     : 'bg-opacity-30'
                 }`}
               >
-                Geografia
+                {Disciplina.GEOGRAFIA}
               </button>
             </li>
             <li>
               <button
-                onClick={() => handleButtonClick(Disciplina.Sociologia)}
+                onClick={() =>
+                  handleButtonClick(
+                    Disciplina.SOCIOLOGIA,
+                    setSelectedDisciplina
+                  )
+                }
                 className={`w-32 h-14 rounded-3xl bg-customPurple ${
-                  selectedDisciplina === 'Sociologia'
+                  selectedDisciplina === Disciplina.SOCIOLOGIA
                     ? 'bg-opacity-100'
                     : 'bg-opacity-30'
                 }`}
               >
-                Sociologia
+                {Disciplina.SOCIOLOGIA}
               </button>
             </li>
           </ul>
@@ -129,21 +138,44 @@ function Modal({ dadosBimestre, openModal, handleAtualizarAvo }: PropsButton) {
           <label htmlFor="nota" className="w-fit py-2 text-base">
             Nota
           </label>
-          <input
-            id="nota"
-            name="nota"
-            type="text"
-            className="bg-customBlack w-24 border-2 border-gray-700 rounded-xl py-3  px-4 text-center"
-            maxLength={2}
-            placeholder="0"
-            value={newNota || 0}
-            onChange={handleChange}
-          />
+          <div className="flex justify-between max-w-full">
+            <input
+              id="nota"
+              name="nota"
+              type="text"
+              className="bg-customBlack w-24 border-2 border-gray-700 rounded-xl py-3  px-4 text-center"
+              maxLength={2}
+              placeholder="0"
+              value={newGrade || 0}
+              onChange={handleChange}
+            />
+            <span
+              className={`p-4 text-customRed text-xs max-w-36 sm:max-w-fit ${
+                isCanSend
+                  ? 'opacity-0 transition-opacity duration-2000 ease-in-out'
+                  : 'opacity-100'
+              }`}
+            >
+              Já existe uma disciplina no Bimestre!
+            </span>
+          </div>
         </li>
         <li className="flex justify-end w-full pt-4">
           <button
-            className="bg-customYellow text-black w-32 h-12 rounded-xl"
-            onClick={() => [sendDados(), openModal()]}
+            className={`bg-customYellow text-black w-32 h-12 rounded-xl ${
+              !isCanSend && 'opacity-50'
+            }`}
+            disabled={!isCanSend}
+            onClick={() => [
+              sendNewData(
+                newGrade || 0,
+                selectedDisciplina,
+                handleAtualizarAvo,
+                dadosBimestre
+              ),
+              !isCanSend,
+              handleNonShipping()
+            ]}
           >
             Confirmar
           </button>

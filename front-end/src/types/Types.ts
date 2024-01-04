@@ -1,8 +1,22 @@
 export interface Resultado {
   _id: string;
-  bimestre: 'PRIMEIRO' | 'SEGUNDO' | 'TERCEIRO' | 'QUARTO';
-  disciplina: 'Biologia' | 'Artes' | 'Geografia' | 'Sociologia' | null;
+  bimestre: Bimestre;
+  disciplina: Disciplina;
   nota: number | null;
   createdAt: Date;
   updatedAt: Date | null;
+}
+
+export enum Bimestre {
+  PRIMEIRO = 'PRIMEIRO',
+  SEGUNDO = 'SEGUNDO',
+  TERCEIRO = 'TERCEIRO',
+  QUARTO = 'QUARTO'
+}
+
+export enum Disciplina {
+  BIOLOGIA = 'Biologia',
+  ARTES = 'Artes',
+  GEOGRAFIA = 'Geografia',
+  SOCIOLOGIA = 'Sociologia'
 }

@@ -21,7 +21,12 @@ export class ResultadosService implements OnModuleInit {
 
       if (!existemRegistros) {
         try {
-          const resultado = new this.resultadoModel({ bimestre });
+          const resultado = new this.resultadoModel({
+            bimestre,
+            nota: null,
+            disciplina: null
+          });
+
           await resultado.save();
           console.log('Sucesso ao criar tabela de dados!');
         } catch (error) {
