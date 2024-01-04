@@ -41,7 +41,6 @@ function Modal({ dadosBimestre, openModal, handleAtualizarAvo }: PropsButton) {
       }, 4000);
     }
   };
-  console.log(isCanSend);
   const bimestre = dadosBimestre.bimestre;
 
   return (
