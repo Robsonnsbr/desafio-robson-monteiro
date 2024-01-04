@@ -39,14 +39,22 @@ function Table() {
 
   return (
     <div className="items-center h-full pt-20 min-w-80">
-      {resultados.map((resultado: Resultado) => (
-        <RowTable
-          key={resultado._id}
-          resultado={resultado}
-          handleAtualizarAvo={handleAtualizarAvo}
-          atualizarFilho={atualizarFilho}
-        />
-      ))}
+      {resultados.length > 0 ? (
+        resultados.map((resultado: Resultado) => (
+          <RowTable
+            key={resultado._id}
+            resultado={resultado}
+            handleAtualizarAvo={handleAtualizarAvo}
+            atualizarFilho={atualizarFilho}
+          />
+        ))
+      ) : (
+        <div className="p-4 bg-gray-200">
+          <p className="text-lg text-red-500">
+            Desculpe, não há dados para mostrar no momento. 😔
+          </p>
+        </div>
+      )}
     </div>
   );
 }
