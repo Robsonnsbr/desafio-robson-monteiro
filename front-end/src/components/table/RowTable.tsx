@@ -67,7 +67,8 @@ const RowTable: React.FC<PropsRow> = ({
                   {dadosBimestre.disciplina}
                 </h3>
                 <p className="pl-4 text-xs">
-                  {formatarData(dadosBimestre.updatedAt)}
+                  {dadosBimestre.updatedAt &&
+                    formatarData(dadosBimestre.updatedAt)}
                 </p>
               </div>
               <Nota nota={dadosBimestre.nota || 0} />

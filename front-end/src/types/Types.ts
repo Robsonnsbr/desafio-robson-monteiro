@@ -4,7 +4,7 @@ export interface Resultado {
   disciplina: Disciplina | null;
   nota: number | null;
   createdAt: Date;
-  updatedAt?: Date;
+  updatedAt: Date | null;
 }
 
 export enum Bimestre {
