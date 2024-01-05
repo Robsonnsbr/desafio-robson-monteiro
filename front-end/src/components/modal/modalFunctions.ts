@@ -25,7 +25,6 @@ export const handleButtonClick = (
 
 export const canSendData = (dadosBimestre?: Resultado) => {
   if (dadosBimestre) {
-    console.log(dadosBimestre);
     return dadosBimestre.nota === null && dadosBimestre.disciplina === null;
   }
 };

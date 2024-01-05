@@ -67,9 +67,6 @@ export const updateDados = async (dadosParaAtualizar: Resultado) => {
     if (!dadosExistentes) {
       throw new Error('Os dados a serem atualizados não foram encontrados');
     }
-    if (dadosParaAtualizar as ResultadoId) {
-      console.log('é do tipo ResultadoId');
-    }
     const response = await fetch(`${apiEndpoint}/${dadosParaAtualizar._id}`, {
       method: 'PUT',
       headers: {
