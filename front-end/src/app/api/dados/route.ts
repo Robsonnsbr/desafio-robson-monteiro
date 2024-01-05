@@ -18,9 +18,45 @@ export const getDados = async () => {
   }
 };
 
-export const updateDados = async (
-  dadosParaAtualizar: ResultadoId | Resultado
-) => {
+export const updateDadosDelete = async (dadosParaAtualizar: ResultadoId) => {
+  try {
+    const dadosAtuais = await getDados();
+
+    const dadosExistentes = dadosAtuais.find(
+      (dados: Resultado) => dados._id === dadosParaAtualizar._id
+    );
+
+    const dadosAtualizados: Resultado = {
+      _id: dadosExistentes._id,
+      bimestre: dadosExistentes.bimestre,
+      disciplina: null,
+      nota: null,
+      createdAt: dadosExistentes.createdAt
+    };
+
+    if (!dadosExistentes) {
+      throw new Error('Os dados a serem atualizados não foram encontrados');
+    }
+    const response = await fetch(`${apiEndpoint}/${dadosParaAtualizar._id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dadosAtualizados)
+    });
+
+    if (!response.ok) {
+      throw new Error('Erro ao atualizar as informações');
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Erro ao atualizar informações:', error);
+    throw error;
+  }
+};
+export const updateDados = async (dadosParaAtualizar: Resultado) => {
   try {
     const dadosAtuais = await getDados();
 
@@ -31,7 +67,9 @@ export const updateDados = async (
     if (!dadosExistentes) {
       throw new Error('Os dados a serem atualizados não foram encontrados');
     }
-
+    if (dadosParaAtualizar as ResultadoId) {
+      console.log('é do tipo ResultadoId');
+    }
     const response = await fetch(`${apiEndpoint}/${dadosParaAtualizar._id}`, {
       method: 'PUT',
       headers: {

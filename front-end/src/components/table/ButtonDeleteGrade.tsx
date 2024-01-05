@@ -1,8 +1,10 @@
 'use client';
 import trashIcon from '@/assets/icons/trash.svg';
 import Image from 'next/image';
-import { updateDados } from 'src/app/api/dados/route';
+import { updateDadosDelete } from 'src/app/api/dados/route';
 import { Resultado } from 'src/types/Types';
+
+type ResultadoId = Pick<Resultado, '_id'>;
 
 type PropsButton = {
   dadosBimestre: Resultado;
@@ -10,14 +12,14 @@ type PropsButton = {
 };
 
 function ButtonDeleteGrade({ dadosBimestre, deleteView }: PropsButton) {
-  const dadosAtualizado = {
+  const dadosAtualizadoDelete: ResultadoId = {
     _id: dadosBimestre._id
   };
 
   return (
     <button
       onClick={() => [
-        updateDados(dadosAtualizado),
+        updateDadosDelete(dadosAtualizadoDelete),
         deleteView(dadosBimestre._id)
       ]}
     >
