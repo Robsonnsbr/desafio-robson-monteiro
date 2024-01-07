@@ -160,7 +160,7 @@ function Modal({ dadosBimestre, openModal, handleAtualizarAvo }: PropsButton) {
         </li>
         <li className="flex justify-end w-full pt-4">
           <button
-            className={`bg-customYellow text-black w-32 h-12 rounded-xl ${
+            className={`bg-customYellow text-black w-32 h-12 font-semibold rounded-xl ${
               !isCanSend && 'opacity-50'
             }`}
             disabled={!isCanSend}
