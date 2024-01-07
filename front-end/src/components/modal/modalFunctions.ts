@@ -48,7 +48,7 @@ export const sendNewData = (
     updateDados(newData);
     handleAtualizarAvo();
   } else {
-    console.error(
+    console.warn(
       'Não é possível enviar novos dados. Nota ou disciplina não são nulos.'
     );
   }

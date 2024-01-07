@@ -1,7 +1,7 @@
 'use client';
 import trashIcon from '@/assets/icons/trash.svg';
 import Image from 'next/image';
-import { updateDadosDelete } from 'src/app/api/dados/route';
+import { updateDados } from 'src/app/api/dados/route';
 import { Resultado } from 'src/types/Types';
 
 type ResultadoId = Pick<Resultado, '_id'>;
@@ -19,7 +19,7 @@ function ButtonDeleteGrade({ dadosBimestre, deleteView }: PropsButton) {
   return (
     <button
       onClick={() => [
-        updateDadosDelete(dadosAtualizadoDelete),
+        updateDados(dadosAtualizadoDelete),
         deleteView(dadosBimestre._id)
       ]}
     >

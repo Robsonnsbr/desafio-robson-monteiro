@@ -19,6 +19,10 @@ export class ResultadosService implements OnModuleInit {
     for (const bimestre of bimestresIniciais) {
       const existemRegistros = await this.resultadoModel.exists({ bimestre });
 
+      if (existemRegistros) {
+        console.warn('Tabela de dados pronta!');
+        return;
+      }
       if (!existemRegistros) {
         try {
           const resultado = new this.resultadoModel({
@@ -33,14 +37,13 @@ export class ResultadosService implements OnModuleInit {
           console.error('Erro ao tentar criar a Tabela Resultado', error);
         }
       }
-      console.warn('Tabela de dados pronta!');
     }
   }
 
   async atualizarResultado(
     id: string,
-    disciplina: Disciplina,
-    nota: number
+    disciplina: Disciplina | null,
+    nota: number | null
   ): Promise<Resultado | null> {
     const resultadoExistente = await this.resultadoModel.findById(id).exec();
     if (!resultadoExistente) {
@@ -51,11 +54,11 @@ export class ResultadosService implements OnModuleInit {
       resultadoExistente.disciplina = disciplina;
       resultadoExistente.nota = nota;
       const resultadoAtualizado = await resultadoExistente.save();
-      console.log('Nota e Disciplina Atualizados!');
+      console.log('Dados Atualizados!');
       return resultadoAtualizado;
     } catch (error) {
       console.error(error);
-      throw new BadRequestException('Erro ao atualizar o resultado');
+      throw new BadRequestException('Erro ao atualizar o dados!');
     }
   }
 

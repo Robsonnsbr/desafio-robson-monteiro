@@ -20,11 +20,11 @@ export class Resultado extends Document {
   @Prop({ required: true, enum: Bimestre })
   bimestre: Bimestre;
 
-  @Prop({ required: false, enum: Disciplina })
-  disciplina: Disciplina;
+  @Prop({ required: false, enum: Disciplina, default: null })
+  disciplina: Disciplina | null;
 
-  @Prop({ required: false })
-  nota: number;
+  @Prop({ required: false, default: null })
+  nota: number | null;
 }
 
 export const ResultadoSchema = SchemaFactory.createForClass(Resultado);
